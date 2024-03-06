@@ -23,6 +23,8 @@ export class PrismaQuestionMapper {
     )
   }
 
+  // mapeia classe de domínio para classe do Prisma
+
   static toPrisma(question: Question): Prisma.QuestionUncheckedCreateInput {
     return {
       id: question.id.toString(),
