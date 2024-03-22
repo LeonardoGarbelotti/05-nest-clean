@@ -1,14 +1,19 @@
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Attachment } from '@/domain/forum/enterprise/entities/attachment'
-import { Prisma } from '@prisma/client'
+import { Prisma, Attachment as PrismaAttachment } from '@prisma/client'
 
 // mapeia uma classe do prisma para a classe do domínio
 
 export class PrismaAttachmentMapper {
-  // static toDomain(raw: PrismaAttachment): Student {
-  //   TO DO
-  // }
-
-  // mapeia classe de domínio para classe do Prisma
+  static toDomain(raw: PrismaAttachment): Attachment {
+    return Attachment.create(
+      {
+        title: raw.title,
+        url: raw.url,
+      },
+      new UniqueEntityID(raw.id),
+    )
+  }
 
   static toPrisma(
     attachment: Attachment,
